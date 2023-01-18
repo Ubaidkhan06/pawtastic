@@ -10,6 +10,7 @@ const Sidebar = ({ heading }) => {
     <Box
       sx={{
         position: "relative",
+        display: { xs: "none", lg: "flex", md: "flex" },
       }}
     >
       <img
@@ -56,7 +57,7 @@ const Sidebar = ({ heading }) => {
           left: "6rem",
           marginTop: "2rem",
           color: "white",
-          display: "flex",
+          display: {xs : 'none', md:'flex', lg : "flex"},
           flexDirection: "column",
         }}
       >
@@ -73,7 +74,7 @@ const Sidebar = ({ heading }) => {
           color: "white",
           display: "flex",
           flexDirection: "column",
-          width : '15rem'
+          width: "15rem",
         }}
       >
         <Typography variant="h6">

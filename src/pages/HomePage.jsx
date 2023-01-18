@@ -6,9 +6,10 @@ import {
   Typography,
   Card,
   CardContent,
-  Link,
 } from "@mui/material";
 
+import { Link } from 'react-router-dom'
+ 
 import bg from "../assets/images/bg.png";
 import logo from "../assets/images/logo.png";
 import img1 from "../assets/images/img1.png";
@@ -24,20 +25,22 @@ import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { backgroundColors } from "../styles/theme/backgrounds";
 
-export const StyledButton = styled(Button)(({ theme, bgColor, textColor }) => ({
-  backgroundColor: bgColor,
-  color: textColor,
-  borderRadius: "20px",
-  "&:hover": {
+export const StyledButton = styled(Button)(
+  ({ theme, bgColor, textColor, pl = "2rem", pr = "2rem" }) => ({
     backgroundColor: bgColor,
-    opacity: 0.8,
-  },
-  paddingLeft: "2rem",
-  paddingRight: "2rem",
-  paddingTop: "0.5rem",
-  fontWeight: 300,
-  margin: "2rem 4rem",
-}));
+    color: textColor,
+    borderRadius: "20px",
+    "&:hover": {
+      backgroundColor: bgColor,
+      opacity: 0.8,
+    },
+    paddingLeft: pl,
+    paddingRight: pr,
+    paddingTop: "0.5rem",
+    fontWeight: 300,
+    margin: "2rem 4rem",
+  })
+);
 
 export const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
@@ -88,22 +91,22 @@ const HomePage = () => {
               top: "9rem",
               right: "10.5rem",
               color: "white",
-              display : 'flex',
-              flexDirection : 'column',
-              alignItems : 'start'
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
             }}
           >
             <Stack direction={"row"} gap={2}>
-              <StyledLink href="#">
+              <StyledLink to="#">
                 <Typography>About us</Typography>
               </StyledLink>
-              <StyledLink href="#">
+              <StyledLink to="#">
                 <Typography>Reviews</Typography>
               </StyledLink>
-              <StyledLink href="#">
+              <StyledLink to="#">
                 <Typography>Services</Typography>
               </StyledLink>
-              <StyledLink href="#">
+              <StyledLink to="/signup">
                 <Typography>Sign up</Typography>
               </StyledLink>
             </Stack>
