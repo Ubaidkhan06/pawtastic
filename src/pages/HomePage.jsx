@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Button, Grid, Typography, Card } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  Link,
+} from "@mui/material";
 
 import bg from "../assets/images/bg.png";
 import logo from "../assets/images/logo.png";
@@ -8,103 +16,127 @@ import img2 from "../assets/images/img2.png";
 import img3 from "../assets/images/img3.png";
 import img4 from "../assets/images/img4.png";
 import img5 from "../assets/images/img5.png";
-import floof from "../assets/images/floof.png";
-import lindsay from "../assets/images/lindsay.png";
-import ginger from "../assets/images/ginger.png";
-import ned from "../assets/images/ned.png";
+
+import { pets, card } from "../data";
 
 import { Stack } from "@mui/system";
 import { useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
+import { backgroundColors } from "../styles/theme/backgrounds";
+
+export const StyledButton = styled(Button)(({ theme, bgColor, textColor }) => ({
+  backgroundColor: bgColor,
+  color: textColor,
+  borderRadius: "20px",
+  "&:hover": {
+    backgroundColor: bgColor,
+    opacity: 0.8,
+  },
+  paddingLeft: "2rem",
+  paddingRight: "2rem",
+  paddingTop: "0.5rem",
+  fontWeight: 300,
+  margin: "2rem 4rem",
+}));
+
+export const StyledLink = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 const HomePage = () => {
   const theme = useTheme();
   console.log(theme.palette.neutral);
 
-  const pets = [
-    {
-      img: lindsay,
-      name: "Lindsay M",
-      desc: "Pawtastic is awesome! They are passionate about pets and employ trustworthy, dependable staff. We love them!”",
-    },
-    {
-      img: floof,
-      name: "Andrew C",
-      desc: "I’m a repeat customer because of their amazing care for our two cats when we travel. I can relax because I know they’re there!”",
-    },
-    {
-      img: ginger,
-      name: "Meg F",
-      desc: "I use them for mid day walks and our babies are so happy with the exercise and love during the day. We see the difference!”",
-    },
-    {
-      img: ned,
-      name: "Jackle B",
-      desc: "I just returned from two weeks away to a sociable, calm cat and no drama. Thanks for a great job, Pawtastic!”",
-    },
-  ];
-
-  const card = [
-    {
-      img : 'ze',
-      title : 'Dog Walk',
-      desc : 'We’ll take your pup for a 30 minute walk and make sure he or she has fresh food and water.'
-    },
-    {
-      img : 'ze',
-      title : 'Drop in Visit',
-      desc : 'We’ll stop by to snuggle, feed, and play with your pets in the comfort of their own home.'
-    },
-    {
-      img : 'ze',
-      title : 'House Sitting',
-      desc : 'We’ll stay overnight with your pets to make sure they have round-the-clock love.'
-    },
-  ]
-
-
   return (
     <>
       <Box>
-        <div className="banner">
+        <div
+          style={{
+            fontFamily: "henriette",
+            position: "relative",
+            height: "40rem",
+            width: "100%",
+          }}
+        >
           <img height={"100%"} width={"100%"} src={bg} alt="background" />
 
-          <div className="logo-background">
-            <img className="logo-image" src={logo} />
-          </div>
+          <Box
+            sx={{
+              backgroundColor: "white",
+              position: "absolute",
+              borderRadius: "100%",
+              height: "64px",
+              width: "64px",
+              top: "5rem",
+              left: "6rem",
+            }}
+          >
+            <img
+              style={{
+                position: "relative",
+                top: "0.7rem",
+                left: "0.7rem",
+              }}
+              src={logo}
+            />
+          </Box>
           <h1 className="header">PAWTASTIC</h1>
-          <div className="content">
+          <Box
+            sx={{
+              position: "absolute",
+              top: "9rem",
+              right: "10.5rem",
+              color: "white",
+              display : 'flex',
+              flexDirection : 'column',
+              alignItems : 'start'
+            }}
+          >
             <Stack direction={"row"} gap={2}>
-              <Typography>About us</Typography>
-              <Typography>Reviews</Typography>
-              <Typography>Services</Typography>
-              <Typography>Sign up</Typography>
+              <StyledLink href="#">
+                <Typography>About us</Typography>
+              </StyledLink>
+              <StyledLink href="#">
+                <Typography>Reviews</Typography>
+              </StyledLink>
+              <StyledLink href="#">
+                <Typography>Services</Typography>
+              </StyledLink>
+              <StyledLink href="#">
+                <Typography>Sign up</Typography>
+              </StyledLink>
             </Stack>
             <div className="subheading">
               <Typography variant="h3">
                 We care for your furry little loved ones while you're away
               </Typography>
             </div>
-            <Button
-              sx={{
-                backgroundColor: "white",
-                color: theme.palette.neutral.navy,
-                marginTop: "1rem",
-                borderRadius: "20px",
-                "&:hover": {
-                  backgroundColor: "white",
-                  opacity: 0.8,
-                },
-              }}
+            <StyledButton
               variant="contained"
+              bgColor={"white"}
+              textColor={theme.palette.neutral.navy}
+              sx={{ marginTop: "0.5rem" }}
             >
               Schedule a Visit
-            </Button>
-          </div>
+            </StyledButton>
+          </Box>
         </div>
-        <Box>
-          <Grid container sx={{ padding: "4rem" }}>
-            <Grid item xs={12} sm={12} md={6} lg={6}>
-              <Box width={"22rem"}>
+        <Box
+          sx={{
+            padding: "8rem 9rem",
+          }}
+        >
+          <Grid container>
+            <Grid item xs={12} sm={12} md={12} lg={6}>
+              <Box
+                sx={{
+                  width: "22rem",
+                  xs: {
+                    backgroundColor: "red",
+                  },
+                }}
+              >
                 <Stack spacing={8}>
                   <Typography
                     variant="h4"
@@ -120,20 +152,13 @@ const HomePage = () => {
                     like our own, and to keep them safe and happy till you’re
                     home.
                   </Typography>
-                  <Button
+                  <StyledButton
                     variant="contained"
-                    sx={{
-                      backgroundColor: theme.palette.neutral.navy,
-                      color: "white",
-                      borderRadius: "20px",
-                      "&:hover": {
-                        backgroundColor: theme.palette.neutral.navy,
-                        opacity: 0.8,
-                      },
-                    }}
+                    bgColor={theme.palette.neutral.navy}
+                    textColor={"white"}
                   >
                     Schedule a visit
-                  </Button>
+                  </StyledButton>
                 </Stack>
               </Box>
             </Grid>
@@ -173,24 +198,39 @@ const HomePage = () => {
             <Grid item xs={12} md={6} lg={6}>
               <Box
                 sx={{
-                  padding: "5rem",
+                  padding: "8rem",
                   backgroundColor: theme.palette.neutral.lightPink,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
-                <Typography
-                  variant="h4"
-                  color={theme.palette.neutral.navy}
-                  fontWeight={700}
-                >
-                  Services tailored to your needs
-                </Typography>
-                <Typography variant="h6" color={theme.palette.neutral.navy}>
-                  Schedule one-off or recurring home visits. An experienced
-                  member of our team will spend time with your pet, feed them,
-                  change cat litter trays, take the dog for a walk, and anything
-                  else you need.
-                </Typography>
-                <Button></Button>
+                <Stack spacing={7}>
+                  <Typography
+                    variant="h4"
+                    color={theme.palette.neutral.navy}
+                    fontWeight={700}
+                  >
+                    Services tailored to your needs
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    color={theme.palette.neutral.navy}
+                    height={"14rem"}
+                  >
+                    Schedule one-off or recurring home visits. An experienced
+                    member of our team will spend time with your pet, feed them,
+                    change cat litter trays, take the dog for a walk, and
+                    anything else you need.
+                  </Typography>
+                  <StyledButton
+                    variant="contained"
+                    bgColor={theme.palette.neutral.navy}
+                    textColor={"white"}
+                  >
+                    Schedule a Visit
+                  </StyledButton>
+                </Stack>
               </Box>
             </Grid>
           </Grid>
@@ -198,7 +238,10 @@ const HomePage = () => {
         <Box
           sx={{
             backgroundColor: theme.palette.neutral.navy,
-            padding: "2rem",
+            paddingTop: "5rem",
+            paddingBottom: "3rem",
+            paddingRight: "4rem",
+            paddingLeft: "4rem",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -243,32 +286,27 @@ const HomePage = () => {
               </Grid>
             ))}
           </Grid>
-          <Button
-            sx={{
-              backgroundColor: theme.palette.neutral.pink,
-              color: theme.palette.neutral.navy,
-              marginTop: "1rem",
-              padding: "0.5rem",
-              borderRadius: "20px",
-              "&:hover": {
-                backgroundColor: theme.palette.neutral.pink,
-                opacity: 0.8,
-              },
-            }}
+          <StyledButton
+            bgColor={theme.palette.neutral.pink}
+            textColor={theme.palette.neutral.navy}
           >
             Read all Reviews
-          </Button>
+          </StyledButton>
         </Box>
-        <Box sx={{
-          display :'flex',
-          justifyContent:'center',
-          flexDirection : 'column',
-          padding : '2rem'
-        }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            paddingTop: "5rem",
+            alignItems: "center",
+          }}
+        >
           <Typography
             textAlign={"center"}
             variant={"h4"}
             color={theme.palette.neutral.navy}
+            width={"25rem"}
           >
             Affordable options, tailored to your needs
           </Typography>
@@ -276,20 +314,180 @@ const HomePage = () => {
             textAlign={"center"}
             variant={"p"}
             color={theme.palette.neutral.navy}
+            width={"30rem"}
+            mt={"2rem"}
           >
             All services include live updates including photos and chat, as well
             as notifications of sitter arrival and departure times.
           </Typography>
-          <Box sx={{
-            display:'flex',
-            justifyContent : 'center'
-          }}>
-            {card?.map(card => (
-              <Card key={card.name}>
-                
-              </Card>
-            ))}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              marginTop: "4rem",
+            }}
+          >
+            <Grid container spacing={12}>
+              {card?.map((card) => (
+                <Grid item key={card.title} xs={12} md={6} lg={4}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {/* <Box
+                      sx={{
+                        backgroundColor: theme.palette.neutral.lightPink,
+                        position: "relative",
+                        bottom: "8rem",
+                        left: "10rem",
+                        height: "4rem",
+                        width: "4rem",
+                        borderRadius: "100px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        height={"30rem"}
+                        width={"30rem"}
+                        src={card.img}
+                        alt={card.name}
+                      />
+                    </Box> */}
+                    <Card
+                      sx={{
+                        width: "18rem",
+                        boxShadow: `0.1px 0.1px 0px 0.5px ${theme.palette.neutral.navy}`,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        height: "25rem",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          backgroundColor: theme.palette.neutral.lightPink,
+                          height: "5rem",
+                          width: "5rem",
+                          borderRadius: "5rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          marginTop: "2rem",
+                        }}
+                      >
+                        <img src={card.img} />
+                      </Box>
+                      <Box
+                        sx={{
+                          padding: "2rem 4rem",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            color: theme.palette.neutral.navy,
+                            fontWeight: "bold",
+                          }}
+                          textAlign={"center"}
+                          variant={"h6"}
+                        >
+                          {card.title}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: theme.palette.neutral.navy,
+                          }}
+                          textAlign="center"
+                        >
+                          {card.desc}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                          backgroundColor: theme.palette.neutral.paleBlue,
+                          boxShadow: `0.1px 0.1px 0.5px 0.5px ${theme.palette.neutral.navy}`,
+                          paddingTop: "2rem",
+                          paddingBottom: "2rem",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            color: theme.palette.neutral.navy,
+                            fontWeight: 700,
+                          }}
+                          variant="h4"
+                        >
+                          {card.price}
+                        </Typography>
+
+                        <Typography
+                          sx={{
+                            color: theme.palette.neutral.gray,
+                          }}
+                          variant="p"
+                        >
+                          {card.subDesc}
+                        </Typography>
+                      </Box>
+                    </Card>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
+          <StyledButton
+            variant="contained"
+            bgColor={theme.palette.neutral.navy}
+          >
+            Schedule a service
+          </StyledButton>
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: theme.palette.neutral.lightPink,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            marginTop: "2rem",
+          }}
+        >
+          <Stack marginY={"4rem"} spacing={3}>
+            <Typography
+              fontWeight={700}
+              variant="h4"
+              textAlign={"center"}
+              color={theme.palette.neutral.navy}
+            >
+              Contact
+            </Typography>
+            <Typography
+              fontWeight={700}
+              variant="h4"
+              textAlign={"center"}
+              color={theme.palette.neutral.navy}
+            >
+              481-624-3240
+            </Typography>
+            <Typography
+              fontWeight={700}
+              variant="h4"
+              textAlign={"center"}
+              color={theme.palette.neutral.navy}
+            >
+              Email Us
+            </Typography>
+          </Stack>
         </Box>
       </Box>
     </>
