@@ -10,6 +10,8 @@ const CustomTextField = ({
   error = false,
   helperText = null,
   fullWidth = true,
+  value,
+  onChange
 }) => {
   return (
     <div>
@@ -18,6 +20,8 @@ const CustomTextField = ({
       </label>
       <br />
       <TextField
+        value={value}
+        onChange={onChange}
         fullWidth={fullWidth}
         error={error}
         size="small"

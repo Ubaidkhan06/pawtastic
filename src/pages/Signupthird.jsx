@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, { createContext, useState } from "react";
 import sidebarimg from "../assets/images/signup2.png";
 import logo from "../assets/images/logo.png";
 import theme from "../styles/theme";
@@ -8,6 +8,12 @@ import VerticalLinearStepper from "../Components/Stepper";
 import CustomTextField from "../Components/CustomTextField";
 import { StyledButton } from "./HomePage";
 import { useNavigate } from "react-router-dom";
+import HumanProfile from "./subpages/HumanProfile";
+import PetBasics from "./subpages/PetBasics";
+import PetDetails from "./subpages/PetDetails";
+import ConfirmPage from "./subpages/ConfirmPage";
+import Morebasics from "./subpages/Morebasics";
+import Moredetails from "./subpages/Moredetails";
 
 const steps = [
   {
@@ -17,14 +23,32 @@ const steps = [
     label: "Pet Basics",
   },
   {
+    label: "More basics",
+  },
+  {
     label: "Pet Details",
+  },
+  {
+    label: "More Details",
   },
   {
     label: "Confirm",
   },
 ];
 
+export const petContext = createContext(undefined);
+
 const Signupthird = () => {
+  const [petData, setPetData] = useState({
+    name: "",
+    image: "",
+    breed: "",
+    gender: "",
+    weight: "",
+    spayedOrNeutered: "",
+    ownerName: "",
+  });
+
   const navigate = useNavigate();
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -38,189 +62,140 @@ const Signupthird = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
+    <petContext.Provider
+      value={{
+        ...petData,
+        setPetData,
       }}
     >
       <Box
         sx={{
-          flex: { xs: 0, lg: 2, md: 2 },
+          display: "flex",
         }}
       >
+        {/* sidebar */}
         <Box
           sx={{
-            position: "relative",
-            display: { xs: "none", lg: "flex", md: "flex" },
+            flex: { xs: 0, lg: 2, md: 2 },
           }}
         >
-          <img
-            style={{
-              height: "100vh",
-              width: "100%",
-            }}
-            src={sidebarimg}
-            alt="sidebarimg"
-          />
           <Box
             sx={{
-              position: "absolute",
-              top: "5rem",
-              left: "6rem",
+              position: "relative",
               display: { xs: "none", lg: "flex", md: "flex" },
-              alignItems: "center",
             }}
           >
+            <img
+              style={{
+                height: "100vh",
+                width: "100%",
+              }}
+              src={sidebarimg}
+              alt="sidebarimg"
+            />
             <Box
-              bgcolor={theme.palette.neutral.darkPink}
-              borderRadius={"100%"}
-              height="3rem"
-              width={"3rem"}
-              display="flex"
-              justifyContent={"center"}
-              alignItems={"center"}
+              sx={{
+                position: "absolute",
+                top: "5rem",
+                left: "6rem",
+                display: { xs: "none", lg: "flex", md: "flex" },
+                alignItems: "center",
+              }}
             >
-              <img src={logo} />
+              <Box
+                bgcolor={theme.palette.neutral.darkPink}
+                borderRadius={"100%"}
+                height="3rem"
+                width={"3rem"}
+                display="flex"
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <img src={logo} />
+              </Box>
+              <Typography
+                paddingLeft={"1rem"}
+                color="white"
+                variant="h6"
+                letterSpacing={4}
+              >
+                PAWTASTIC
+              </Typography>
             </Box>
-            <Typography
-              paddingLeft={"1rem"}
-              color="white"
-              variant="h6"
-              letterSpacing={4}
+            <Box
+              sx={{
+                position: "absolute",
+                top: "8rem",
+                left: "6rem",
+                marginTop: "2rem",
+                color: "white",
+                display: { xs: "none", md: "flex", lg: "flex" },
+                flexDirection: "column",
+              }}
             >
-              PAWTASTIC
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "8rem",
-              left: "6rem",
-              marginTop: "2rem",
-              color: "white",
-              display: { xs: "none", md: "flex", lg: "flex" },
-              flexDirection: "column",
-            }}
-          >
-            <Typography variant="h4" fontWeight={700}>
-              <VerticalLinearStepper activeStep={activeStep} steps={steps} />
-            </Typography>
+              <Typography variant="h4" fontWeight={700}>
+                <VerticalLinearStepper activeStep={activeStep} steps={steps} />
+              </Typography>
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          flex: "3",
-        }}
-      >
+        {/* sidebar */}
+
+        {/* main content */}
         <Box
           sx={{
-            backgroundColor: theme.palette.neutral.lightPink,
+            flex: "3",
           }}
-          padding={"4rem 7rem 5rem 7rem"}
         >
-          <Typography
-            variant="h4"
-            fontWeight={600}
-            color={theme.palette.neutral.navy}
-            paddingBottom={"2rem"}
-          >
-            Hello! Please tell us about yourself
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"Your First Name"}
-                label={"First Name"}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"Your Last Name"}
-                label={"Last Name"}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"000 000 0000"}
-                label={"Phone"}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"000 000 0000"}
-                label={"Landline"}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"Placeholder Text"}
-                label={"Label"}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"City"}
-                label={"City"}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"State"}
-                label={"State"}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <CustomTextField
-                fullWidth={true}
-                placeholder={"0000"}
-                label={"Zip"}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-        <Box display={"flex"} justifyContent={"space-between"}>
-          <Box>
-            <StyledButton
-              bgColor={"white"}
-              textColor={theme.palette.neutral.navy}
-              pl={"5rem"}
-              pr={"5rem"}
-              onClick={() => handleBack()}
-              variant={"outlined"}
-              sx={{
-                borderColor: theme.palette.neutral.navy,
-                "&:hover": {
+          {/* conditional rendering for stepper */}
+          {activeStep === 0 ? <HumanProfile /> : null}
+          {activeStep === 1 ? <PetBasics /> : null}
+          {activeStep === 2 ? <Morebasics /> : null}
+          {activeStep === 3 ? <PetDetails /> : null}
+          {activeStep === 4 ? <Moredetails /> : null}
+          {activeStep === 5 ? <ConfirmPage /> : null}
+          {/* conditional rendering for stepper */}
+
+          {/* back next buttons */}
+          <Box display={"flex"} justifyContent="space-between">
+            <Box>
+              <StyledButton
+                bgColor={"white"}
+                textColor={theme.palette.neutral.navy}
+                pl={"5rem"}
+                pr={"5rem"}
+                onClick={() => handleBack()}
+                variant={"outlined"}
+                sx={{
                   borderColor: theme.palette.neutral.navy,
-                },
-              }}
-              disabled={activeStep === 0 ? true : false}
-            >
-              Back
-            </StyledButton>
+                  "&:hover": {
+                    borderColor: theme.palette.neutral.navy,
+                  },
+                }}
+                disabled={activeStep === 0 ? true : false}
+              >
+                Back
+              </StyledButton>
+            </Box>
+            <Box>
+              <StyledButton
+                bgColor={theme.palette.neutral.navy}
+                textColor={"white"}
+                pl={"5rem"}
+                pr={"5rem"}
+                onClick={() => handleNext()}
+                disabled={activeStep === steps.length - 1 ? true : false}
+              >
+                Next
+              </StyledButton>
+            </Box>
           </Box>
-          <Box>
-            <StyledButton
-              bgColor={theme.palette.neutral.navy}
-              textColor={"white"}
-              pl={"5rem"}
-              pr={"5rem"}
-              onClick={() => handleNext()}
-              disabled={activeStep === steps.length - 1 ? true : false}
-            >
-              Next
-            </StyledButton>
-          </Box>
+
+          {/* back next buttons */}
         </Box>
+        {/* main content */}
       </Box>
-    </Box>
+    </petContext.Provider>
   );
 };
 

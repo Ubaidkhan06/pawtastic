@@ -10,9 +10,16 @@ export default function VerticalLinearStepper({ activeStep, steps }) {
 
   return (
     <Box sx={{ maxWidth: 400 }}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper sx={{
+        color : 'white',
+        "& .Mui-active .MuiStepIcon-root": { color: "white" },
+        "& .MuiStepIcon-root.Mui-completed": { color: "white" },
+        "& .Mui-disabled .MuiStepIcon-root": { color: "white" }
+      }} activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
-          <Step key={step.label}>
+          <Step sx={{
+            color : 'white',
+          }} key={step.label}>
             <StepLabel>{step.label}</StepLabel>
           </Step>
         ))}
