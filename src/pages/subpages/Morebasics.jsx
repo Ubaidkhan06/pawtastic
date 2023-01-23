@@ -16,7 +16,7 @@ const Morebasics = () => {
         sx={{
           backgroundColor: theme.palette.neutral.lightPink,
         }}
-        padding={"5rem 7rem 6rem 7rem"}
+        padding={"3rem 7rem 3rem 7rem"}
       >
         <Typography
           variant="h4"
@@ -29,6 +29,7 @@ const Morebasics = () => {
         <Grid container columnSpacing={6} rowSpacing={3}>
           <Grid item xs={6}>
             <CustomTextField
+              required={true}
               label={"Name"}
               placeholder={"Pet's Name"}
               value={data.name}
@@ -77,9 +78,14 @@ const Morebasics = () => {
               bgcolor="white"
               justifyContent={"space-between"}
               padding="0.5rem"
+              mt="0.5rem"
             >
               <Box
-                bgcolor={data.gender === 'Female' ? theme.palette.neutral.pink : 'white'}
+                bgcolor={
+                  data.gender === "Female"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
                 sx={{
                   color: theme.palette.neutral.navy,
                   padding: "0.2rem 2rem",
@@ -99,10 +105,152 @@ const Morebasics = () => {
                     cursor: "pointer",
                   },
                 }}
-                bgcolor={data.gender === 'Male' ? theme.palette.neutral.pink : 'white'}
+                bgcolor={
+                  data.gender === "Male" ? theme.palette.neutral.pink : "white"
+                }
                 onClick={(e) => data.setPetData({ ...data, gender: "Male" })}
               >
                 Male
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <label style={{ color: theme.palette.neutral.gray }}>
+              Spayed or Neutered
+            </label>
+            <Box
+              display={"flex"}
+              gap={3}
+              bgcolor="white"
+              justifyContent={"space-between"}
+              padding="0.5rem"
+              mt="0.5rem"
+            >
+              <Box
+                bgcolor={
+                  data.spayedOrNeutered === "Yes"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 3rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                onClick={(e) =>
+                  data.setPetData({ ...data, spayedOrNeutered: "Yes" })
+                }
+              >
+                Yes
+              </Box>
+              <Box
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 3rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                bgcolor={
+                  data.spayedOrNeutered === "No"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                onClick={(e) =>
+                  data.setPetData({ ...data, spayedOrNeutered: "No" })
+                }
+              >
+                No
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <label style={{ color: theme.palette.neutral.gray }}>Weight</label>
+            <Box
+              display={"flex"}
+              gap={3}
+              bgcolor="white"
+              justifyContent={"space-between"}
+              padding="0.5rem"
+              mt="0.5rem"
+            >
+              <Box
+                bgcolor={
+                  data.weight === "10-20"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 0.5rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                onClick={(e) =>
+                  data.setPetData({ ...data, weight: "10-20" })
+                }
+              >
+                10-20 Pounds
+              </Box>
+              <Box
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 0.5rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                bgcolor={
+                  data.weight === "20-50"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                onClick={(e) =>
+                  data.setPetData({ ...data, weight: "20-50" })
+                }
+              >
+                20-50 Pounds
+              </Box>
+              <Box
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 0.5rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                bgcolor={
+                  data.weight === "50-100"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                onClick={(e) =>
+                  data.setPetData({ ...data, weight: "50-100" })
+                }
+              >
+                50-100 Pounds
+              </Box>
+              <Box
+                sx={{
+                  color: theme.palette.neutral.navy,
+                  padding: "0.2rem 0.5rem",
+                  ":hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                bgcolor={
+                  data.weight === "100+"
+                    ? theme.palette.neutral.pink
+                    : "white"
+                }
+                onClick={(e) =>
+                  data.setPetData({ ...data, weight: "100+" })
+                }
+              >
+                100+ Pounds
               </Box>
             </Box>
           </Grid>

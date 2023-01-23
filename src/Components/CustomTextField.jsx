@@ -11,7 +11,10 @@ const CustomTextField = ({
   helperText = null,
   fullWidth = true,
   value,
-  onChange
+  onChange,
+  required = true,
+  multiline = false,
+  rows=1
 }) => {
   return (
     <div>
@@ -20,6 +23,8 @@ const CustomTextField = ({
       </label>
       <br />
       <TextField
+      rows={rows}
+        required={required}
         value={value}
         onChange={onChange}
         fullWidth={fullWidth}
@@ -28,6 +33,7 @@ const CustomTextField = ({
         id={id}
         type={type}
         placeholder={placeholder}
+        multiline={multiline}
         sx={{
           backgroundColor: "white",
           marginTop: "8px",

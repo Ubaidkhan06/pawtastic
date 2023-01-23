@@ -47,6 +47,7 @@ const Signupthird = () => {
     weight: "",
     spayedOrNeutered: "",
     ownerName: "",
+    favouriteThings: [],
   });
 
   const navigate = useNavigate();
@@ -151,7 +152,7 @@ const Signupthird = () => {
           {activeStep === 0 ? <HumanProfile /> : null}
           {activeStep === 1 ? <PetBasics /> : null}
           {activeStep === 2 ? <Morebasics /> : null}
-          {activeStep === 3 ? <PetDetails /> : null}
+          {activeStep === 3 ? <PetDetails handleNext={handleNext} /> : null}
           {activeStep === 4 ? <Moredetails /> : null}
           {activeStep === 5 ? <ConfirmPage /> : null}
           {/* conditional rendering for stepper */}
@@ -178,16 +179,29 @@ const Signupthird = () => {
               </StyledButton>
             </Box>
             <Box>
-              <StyledButton
-                bgColor={theme.palette.neutral.navy}
-                textColor={"white"}
-                pl={"5rem"}
-                pr={"5rem"}
-                onClick={() => handleNext()}
-                disabled={activeStep === steps.length - 1 ? true : false}
-              >
-                Next
-              </StyledButton>
+              {activeStep === steps.length - 1 ? (
+                <StyledButton
+                  type="submit"
+                  bgColor={theme.palette.neutral.navy}
+                  textColor={"white"}
+                  pl={"5rem"}
+                  pr={"5rem"}
+                >
+                  SignUp
+                </StyledButton>
+              ) : (
+                <StyledButton
+                  type="submit"
+                  bgColor={theme.palette.neutral.navy}
+                  textColor={"white"}
+                  pl={"5rem"}
+                  pr={"5rem"}
+                  onClick={() => handleNext()}
+                  disabled={activeStep === steps.length - 1 ? true : false}
+                >
+                  Next
+                </StyledButton>
+              )}
             </Box>
           </Box>
 
